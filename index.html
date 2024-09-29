@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="es"> 
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=none">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="Chami">
-    <meta name="description" content="Cliente Oficial de MCBE Chai"> 
+    <meta name="description" content="Cliente Oficial de MCBE Chai">
     <link rel="icon" href="https://um2409.renderforest.com/u25148551/visuals/250ae016-54dd-4a62-bb8b-4ad8a23a3879.png" type="image/png">
-    <title>Chai Realm</title> 
+    <title>Chai Realm</title>
+    <link rel="stylesheet" href="https://chamidev.github.io/Realm/minecraft_font.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&display=swap');
+
         body {
             margin: 0;
             padding: 0;
@@ -27,6 +29,50 @@
             user-select: none;
         }
 
+        .carga {
+            width: 80px;
+            height: 80px;
+            color: #F4F4F4;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background:
+                conic-gradient(from 134deg at top, currentColor 92deg, #0000 0) top,
+                conic-gradient(from -46deg at bottom, currentColor 92deg, #0000 0) bottom;
+            background-size: 100% 50%;
+            background-repeat: no-repeat;
+        }
+
+        .carga:before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                conic-gradient(from -135deg at top 0 left 44px, #0000, currentColor 1deg 90deg, #0000 0),
+                conic-gradient(from -45deg at right 0 top 44px, #0000, currentColor 1deg 90deg, #0000 0),
+                conic-gradient(from 45deg at bottom 0 right 44px, #0000, currentColor 1deg 90deg, #0000 0),
+                conic-gradient(from 135deg at left 0 bottom 40px, #0000, currentColor 1deg 90deg, #0000 0);
+            animation: sh7 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+        }
+
+        @keyframes sh7 {
+            33% {
+                inset: -20px;
+                transform: rotate(0deg)
+            }
+
+            66% {
+                inset: -20px;
+                transform: rotate(90deg)
+            }
+
+            100% {
+                inset: 0;
+                transform: rotate(90deg)
+            }
+        }
+
         .logo-minecraft {
             margin-top: -10%;
             width: 80%;
@@ -41,6 +87,7 @@
             align-items: center;
             gap: 10px;
             margin-top: 5%;
+            z-index: 1;
         }
 
         .boton-personalizado {
@@ -58,7 +105,6 @@
             color: black;
             text-align: center;
             line-height: 60px;
-            /* Alinea verticalmente el texto dentro del botón */
         }
 
         .boton-personalizado:hover {
@@ -70,19 +116,87 @@
             background-image: url('https://um2409.renderforest.com/u25148551/visuals/ec0807fb-3e95-4f54-80ff-eb42c8e0d15f.png');
         }
 
-        /* Asegúrate de que los botones no tengan fondo adicional */
-
         button {
             background-color: transparent;
             border: none;
+        }
+
+        .username-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            font-family: 'Pixelify Sans', cursive;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .username-container img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .user-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: 'Pixelify Sans', cursive;
+        }
+
+        .user-menu div {
+            margin: 5px 0;
+            cursor: pointer;
+        }
+
+        .user-menu.active {
+            display: block;
+        }
+
+        /* Estilos para la sección de administración de cuenta */
+        .admin-container {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            font-family: 'Pixelify Sans', cursive;
+            z-index: 2;
+        }
+
+        .admin-container input {
+            margin: 10px 0;
+            width: 100%;
+            padding: 8px;
+        }
+
+        .admin-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .admin-container button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 
 <body>
+    <div class="carga" id="loader"></div>
     <img class="logo-minecraft" src="https://um2409.renderforest.com/u25148551/visuals/1c6f94cd-c77c-46ce-9328-a72936f01044.png" alt="Logo Minecraft">
-
-    <!-- Contenedor de botones personalizados -->
     <div class="boton-container">
         <a href="minecraft://acceptRealmInvite/?inviteID=VA53TYg_n2wm-kE">
             <button class="boton-personalizado">Jugar</button>
@@ -93,6 +207,131 @@
         <button class="boton-personalizado" onclick="alert('Abrir ajustes')">Ajustes</button>
         <button class="boton-personalizado" onclick="window.close()">Salir</button>
     </div>
+
+    <div class="username-container" id="usernameContainer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Argentina.svg/1200px-Flag_of_Argentina.svg.png" alt="Flag">
+        <span id="username">Cargando...</span>
+    </div>
+    <div class="user-menu" id="userMenu">
+        <div onclick="showAdmin()">Administrar cuenta</div>
+        <div onclick="logout()">Cerrar Sesión</div>
+        <div onclick="showAuthOptions()">Login/Signup</div>
+    </div>
+
+    <div class="admin-container" id="adminContainer">
+        <h3>Administrar Cuenta</h3>
+        <input type="text" id="newEmail" placeholder="Nuevo Correo Electrónico">
+        <input type="password" id="newPassword" placeholder="Nueva Contraseña">
+        <button onclick="updateAccount()">Actualizar</button>
+        <button onclick="closeAdmin()">Cerrar</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateEmail, updatePassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCpunZXML4631zFV67iDnd_1eFW0LSf9xo",
+            authDomain: "chai-realm.firebaseapp.com",
+            projectId: "chai-realm",
+            storageBucket: "chai-realm.appspot.com",
+            messagingSenderId: "666759827151",
+            appId: "1:666759827151:web:462b17f637d3d57d3871ba",
+            measurementId: "G-Q281HN40Z0"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        const usernameElement = document.getElementById('username');
+        const usernameContainer = document.getElementById('usernameContainer');
+        const userMenu = document.getElementById('userMenu');
+        const loader = document.getElementById('loader');
+        const adminContainer = document.getElementById('adminContainer');
+
+        onAuthStateChanged(auth, user => {
+            loader.style.display = 'none';
+            if (user) {
+                usernameElement.textContent = user.email.split('@')[0];
+                usernameContainer.style.display = 'flex';
+            } else {
+                requestUsername();
+            }
+        });
+
+        function requestUsername() {
+            const email = prompt("Por favor, introduce tu correo electrónico para registrarte o iniciar sesión:");
+            const password = prompt("Por favor, introduce tu contraseña:");
+            if (email && password) {
+                signInWithEmailAndPassword(auth, email, password)
+                    .then(userCredential => {
+                        console.log("Usuario logueado:", userCredential.user.email);
+                    })
+                    .catch(error => {
+                        console.error("Error al iniciar sesión:", error);
+                        createUserWithEmailAndPassword(auth, email, password)
+                            .then(userCredential => {
+                                console.log("Usuario registrado:", userCredential.user.email);
+                            })
+                            .catch(error => {
+                                console.error("Error al registrar:", error);
+                            });
+                    });
+            }
+        }
+
+        function showAuthOptions() {
+            userMenu.classList.toggle('active');
+        }
+
+        function logout() {
+            signOut(auth).then(() => {
+                console.log("Usuario desconectado");
+                usernameElement.textContent = "Cargando...";
+                requestUsername();
+            }).catch(error => {
+                console.error("Error al cerrar sesión:", error);
+            });
+        }
+
+        function showAdmin() {
+            adminContainer.style.display = 'block';
+        }
+
+        function closeAdmin() {
+            adminContainer.style.display = 'none';
+        }
+
+        function updateAccount() {
+            const user = auth.currentUser;
+            const newEmail = document.getElementById('newEmail').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            if (user) {
+                // Actualizar correo electrónico si se proporciona uno nuevo
+                if (newEmail) {
+                    updateEmail(user, newEmail).then(() => {
+                        console.log("Correo electrónico actualizado");
+                    }).catch(error => {
+                        console.error("Error al actualizar el correo:", error);
+                    });
+                }
+
+                // Actualizar contraseña si se proporciona una nueva
+                if (newPassword) {
+                    updatePassword(user, newPassword).then(() => {
+                        console.log("Contraseña actualizada");
+                    }).catch(error => {
+                        console.error("Error al actualizar la contraseña:", error);
+                    });
+                }
+            }
+        }
+
+        usernameContainer.addEventListener('click', showAuthOptions);
+    </script>
 </body>
 
 </html>

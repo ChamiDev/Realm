@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Chami">
+    <meta name="description" content="Cliente Oficial de MCBE Chai">
+    <link rel="icon" href="https://um2409.renderforest.com/u25148551/visuals/cdc04bf4-da0c-4722-9eba-61651e8ce3ac.png" type="image/png">
+    <title>Chai Realm</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&display=swap">
+    <style>
+        @font-face {
+            font-family: 'MinecraftFont';
+            src: url('https://chamidev.github.io/Realm/minecraft_font.ttf') format('truetype');
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://chamidev.github.io/Realm/Video.Guru_20240929_110223385-_1_.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: url('https://um2409.renderforest.com/u25148551/visuals/1249edad-d0e4-471d-b496-7ae0ab64bdf0.png'), auto;
+            flex-direction: column;
+            user-select: none;
+            overflow: hidden;
+            font-family: 'MinecraftFont', sans-serif;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            color: purple;
+            /* Color cambiado a morado */
+            position: relative;
+            background: conic-gradient(from 134deg at top, currentColor 92deg, #0000 0) top, conic-gradient(from -46deg at bottom, currentColor 92deg, #0000 0) bottom;
+            background-size: 100% 50%;
+            background-repeat: no-repeat;
+        }
+
+        .loader:before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: conic-gradient(from -135deg at top 0 left 44px, #0000, currentColor 1deg 90deg, #0000 0), conic-gradient(from -45deg at right 0 top 44px, #0000, currentColor 1deg 90deg, #0000 0), conic-gradient(from 45deg at bottom 0 right 44px, #0000, currentColor 1deg 90deg, #0000 0), conic-gradient(from 135deg at left 0 bottom 40px, #0000, currentColor 1deg 90deg, #0000 0);
+            animation: sh7 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+        }
+
+        @keyframes sh7 {
+            33% {
+                inset: -20px;
+                transform: rotate(0deg);
+            }
+            66% {
+                inset: -20px;
+                transform: rotate(90deg);
+            }
+            100% {
+                inset: 0;
+                transform: rotate(90deg);
+            }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            color: #F4F4F4;
+            flex-direction: column;
+        }
+
+        .time {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 18px;
+            color: #F4F4F4;
+        }
+
+        .location {
+            position: absolute;
+            top: 50px;
+            /* Ajustar posición debajo de la fecha */
+            left: 20px;
+            font-size: 16px;
+            color: #F4F4F4;
+        }
+
+        .user {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 16px;
+            color: #F4F4F4;
+            cursor: pointer;
+            /* Cambiar cursor a pointer */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .logo-minecraft {
+            width: 80%;
+            height: auto;
+            max-width: 600px;
+            z-index: 1;
+        }
+
+        .boton-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5%;
+        }
+
+        .boton-personalizado {
+            width: 350px;
+            height: 60px;
+            border: none;
+            background-image: url('https://um2409.renderforest.com/u25148551/visuals/e2bec167-c548-4612-98b5-1d84c659f9a2.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            transition: background-image 0.1s ease;
+            font-size: 20px;
+            color: black;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .boton-personalizado:hover {
+            background-image: url('https://um2409.renderforest.com/u25148551/visuals/c8804cb7-cd43-4804-a224-c2123db6e49a.png');
+            cursor: url('https://um2409.renderforest.com/u25148551/visuals/1249edad-d0e4-471d-b496-7ae0ab64bdf0.png'), auto;
+        }
+
+        .boton-personalizado:active {
+            background-image: url('https://um2409.renderforest.com/u25148551/visuals/c8804cb7-cd43-4804-a224-c2123db6e49a.png');
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+        }
+
+        .img-bottom-left {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            max-height: 100px;
+            /* Altura máxima de 100px */
+            width: auto;
+            /* Ancho automático */
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <div class="time" id="time"></div>
+    <div class="location" id="location"></div>
+    <!-- Agregar ubicación aquí -->
+    <div class="user" id="user" onclick="changeUsername()"></div>
+    <!-- Agregar funcionalidad de cambiar nombre -->
+
+    <div class="content" id="content">
+        <img class="logo-minecraft" src="https://um2409.renderforest.com/u25148551/visuals/1c6f94cd-c77c-46ce-9328-a72936f01044.png" alt="Logo Minecraft">
+        <div class="boton-container">
+            <button class="boton-personalizado" onclick="playGame()">Jugar</button>
+            <button class="boton-personalizado" onclick="showActivationInstructions()">Descrgar Minecraft Release</button>
+            <button class="boton-personalizado" onclick="invite()">Invitar</button>
+            <button class="boton-personalizado" onclick="exitApp()">Salir</button>
+        </div>
+    </div>
+
+    <img class="img-bottom-left" id="dynamicImage" src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Realms_Media-Block-Image-0_Bedrock_4x3.png" alt="Imagen Minecraft">
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = {
+                timeZone: 'America/Argentina/Buenos_Aires',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            };
+            const formatter = new Intl.DateTimeFormat('es-AR', options);
+            const dateTimeString = formatter.format(now);
+            const [time, date] = dateTimeString.split(', ');
+            document.getElementById('time').textContent = `${time} ${date}`;
+        }
+
+        async function getCountryAndProvince() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                const country = data.country_name; // Obtener nombre del país
+                const region = data.region; // Obtener nombre de la provincia
+                return `${country}, ${region}`; // Retornar país y provincia
+            } catch (error) {
+                console.error('Error al obtener el país y provincia:', error);
+                return `🌎, Provincia desconocida`; // Mensaje por defecto en caso de error
+            }
+        }
+
+        async function displayUser() {
+            const username = getCookie('usernamechai') || await promptUsername();
+            document.getElementById('user').textContent = username;
+            const location = await getCountryAndProvince();
+            document.getElementById('location').textContent = location; // Mostrar país y provincia
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        async function promptUsername() {
+            const username = prompt('Por favor, ingresa tu nombre de usuario:');
+            document.cookie = `usernamechai=${username}; path=/;`;
+            return username;
+        }
+
+        async function changeUsername() {
+            const newUsername = prompt('Por favor, ingresa tu nuevo nombre de usuario:');
+            if (newUsername) {
+                document.cookie = `usernamechai=${newUsername}; path=/;`;
+                document.getElementById('user').textContent = newUsername;
+                const location = await getCountryAndProvince();
+                document.getElementById('location').textContent = location; // Actualizar país y provincia
+            }
+        }
+
+        // Función para alternar imágenes
+        let currentImageIndex = 0;
+        const images = [
+            'https://www.minecraft.net/content/dam/games/minecraft/key-art/Realms_Media-Block-Image-0_Bedrock_4x3.png',
+            'https://www.minecraft.net/content/dam/games/minecraft/logos/esrb_2021.svg',
+            'https://www.minecraft.net/content/dam/games/minecraft/logos/Mojang2020Logo.png'
+        ];
+
+        function changeImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.getElementById('dynamicImage').src = images[currentImageIndex];
+        }
+
+        function showActivationInstructions() {
+            window.location.href = 'https://mcpedl.org/downloading/#:~:text=Fast%20Download%20MCPE%20APK';
+        }
+
+        function playGame() {
+            // Redirigir al enlace del juego
+            window.location.href = 'minecraft://acceptRealmInvite/?inviteID=VA53TYg_n2wm-kE';
+        }
+
+        function invite() {
+            // Utilizar la API de Web Share para compartir el enlace
+            const shareData = {
+                title: 'Invita a tus amigos a Chai Realm',
+                text: '¡Únete a mí en MCBE Chai Realm!',
+                url: 'https://chamidev.github.io/Realm/invitar'
+            };
+
+            // Verificar si la API de compartir está disponible
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => console.log('Enlace compartido con éxito'))
+                    .catch((error) => console.error('Error al compartir:', error));
+            } else {
+                alert('Compartir no es compatible con este navegador.');
+            }
+        }
+
+        function exitApp() {
+            // Cerrar la aplicación
+            window.close();
+        }
+
+        window.onload = async function() {
+            setInterval(updateTime, 1000);
+            await displayUser();
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                document.getElementById('content').style.display = 'flex';
+            }, 3000);
+            // Cambiar la imagen cada 5 segundos
+            setInterval(changeImage, 5000);
+        };
+    </script>
+</body>
+
+</html>

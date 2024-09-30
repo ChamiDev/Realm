@@ -196,7 +196,7 @@
         <img class="logo-minecraft" src="https://um2409.renderforest.com/u25148551/visuals/1c6f94cd-c77c-46ce-9328-a72936f01044.png" alt="Logo Minecraft">
         <div class="boton-container">
             <button class="boton-personalizado" onclick="playGame()">Jugar</button>
-            <button class="boton-personalizado" onclick="showActivationInstructions()">Descrgar Minecraft Release</button>
+            <button class="boton-personalizado" onclick="showActivationInstructions()">Descargar Minecraft Release</button>
             <button class="boton-personalizado" onclick="invite()">Invitar</button>
             <button class="boton-personalizado" onclick="exitApp()">Salir</button>
         </div>
@@ -287,26 +287,12 @@
         }
 
         function invite() {
-            // Utilizar la API de Web Share para compartir el enlace
-            const shareData = {
-                title: 'Invita a tus amigos a Chai Realm',
-                text: '¡Únete a mí en MCBE Chai Realm!',
-                url: 'https://chamidev.github.io/Realm/invitar'
-            };
-
-            // Verificar si la API de compartir está disponible
-            if (navigator.share) {
-                navigator.share(shareData)
-                    .then(() => console.log('Enlace compartido con éxito'))
-                    .catch((error) => console.error('Error al compartir:', error));
-            } else {
-                alert('Compartir no es compatible con este navegador.');
-            }
+            window.location.href = 'http://action_share';
         }
 
         function exitApp() {
             // Cerrar la aplicación
-            window.close();
+            window.location.href = 'http://action_exit';
         }
 
         window.onload = async function() {

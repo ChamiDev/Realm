@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=none">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Chami">
+    <meta name="description" content="Cliente Oficial de MCBE Chai">
+    <link rel="icon" href="https://um2409.renderforest.com/u25148551/visuals/cdc04bf4-da0c-4722-9eba-61651e8ce3ac.png" type="image/png">
+    <title>Chai Realm</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://chamidev.github.io/Realm/Video.Guru_20240929_110223385-_1_.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: url('https://um2409.renderforest.com/u25148551/visuals/1249edad-d0e4-471d-b496-7ae0ab64bdf0.png'), auto;
+            flex-direction: column;
+            user-select: none;
+            overflow: hidden;
+            font-family: 'MinecraftFont', sans-serif;
+        }
+
+        .clock {
+            margin: 2em;
+            font-size: 2em;
+            cursor: default;
+            /* Cambiar a 'default' para el reloj */
+        }
+
+        .message {
+            font-size: 1.5em;
+            cursor: url('https://um2409.renderforest.com/u25148551/visuals/1249edad-d0e4-471d-b496-7ae0ab64bdf0.png'), auto;
+        }
+
+        .box {
+            background-image: url('https://p.novaskin.me/1451183089.png');
+            background-color: black;
+            background-size: cover;
+            background-position: top;
+            background-repeat: no-repeat;
+            border-color: purple;
+            box-shadow: 5px 5px 5px purple;
+            cursor: url('https://um2409.renderforest.com/u25148551/visuals/1249edad-d0e4-471d-b496-7ae0ab64bdf0.png'), auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="clock"></div>
+    </div>
+    <script>
+        var clock;
+
+        $(document).ready(function() {
+            // Fecha objetivo: 5 de octubre de 2024 a las 15:30 GMT-3
+            var targetDate = new Date('2024-10-05T15:30:00-03:00');
+
+            // Fecha actual
+            var currentDate = new Date();
+
+            // Calcular la diferencia en segundos entre la fecha futura y la fecha actual
+            var diff = Math.floor((targetDate - currentDate) / 1000);
+
+            // Verificar si la diferencia es negativa
+            if (diff < 0) {
+                $('.message').text("...");
+                return;
+            }
+
+            // Instanciar un countdown FlipClock sin etiquetas
+            clock = $('.clock').FlipClock(diff, {
+                clockFace: 'HourCounter', // Cambiado a 'HourCounter'
+                countdown: true, // Habilita la cuenta regresiva
+                language: 'es', // Establece el idioma a español
+                callbacks: {
+                    stop: function() {
+                        $('.message').text("..."); // Mensaje antes de redirigir
+                        // Redirigir a la URL de Minecraft
+                        window.location.href = "minecraft://acceptRealmInvite/?inviteID=VA53TYg_n2wm-kE";
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

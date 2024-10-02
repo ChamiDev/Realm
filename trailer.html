@@ -34,69 +34,9 @@
             font-family: 'MinecraftFont', sans-serif;
         }
 
-        .loader {
-            width: 80px;
-            height: 80px;
-            color: purple;
-            position: relative;
-            background: conic-gradient(from 134deg at top, currentColor 92deg, #0000 0) top, conic-gradient(from -46deg at bottom, currentColor 92deg, #0000 0) bottom;
-            background-size: 100% 50%;
-            background-repeat: no-repeat;
-        }
-
-        .loader:before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: conic-gradient(from -135deg at top 0 left 44px, #0000, currentColor 1deg 90deg, #0000 0), conic-gradient(from -45deg at right 0 top 44px, #0000, currentColor 1deg 90deg, #0000 0), conic-gradient(from 45deg at bottom 0 right 44px, #0000, currentColor 1deg 90deg, #0000 0), conic-gradient(from 135deg at left 0 bottom 40px, #0000, currentColor 1deg 90deg, #0000 0);
-            animation: sh7 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
-        }
-
-        @keyframes sh7 {
-            33% {
-                inset: -20px;
-                transform: rotate(0deg);
-            }
-            66% {
-                inset: -20px;
-                transform: rotate(90deg);
-            }
-            100% {
-                inset: 0;
-                transform: rotate(90deg);
-            }
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            color: #F4F4F4;
-            flex-direction: column;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .content {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            z-index: 1;
-        }
-
         .trailer {
             width: 90%;
+            height: 90%;
             border-color: purple;
             box-shadow: 5px 5px 5px purple;
         }
@@ -104,24 +44,8 @@
 </head>
 
 <body>
-    <div class="overlay" id="loader">
-        <div class="loader"></div>
-    </div>
-
-    <div class="time" id="time"></div>
-    <div class="location" id="gmt"></div>
-
-    <div class="content" id="content">
         <iframe class="trailer" src="https://drive.google.com/file/d/16fiq85PQME_CnbB8NpZqHMqiCooOPc2q/preview" width="640" height="360" allow="autoplay"></iframe>
     </div>
-
-
-    <script>
-        setTimeout(() => {
-            document.getElementById('loader').classList.add('hidden');
-            document.getElementById('content').style.display = 'flex';
-        }, 3500);
-    </script>
 </body>
 
 </html>

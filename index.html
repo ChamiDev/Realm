@@ -180,13 +180,14 @@
         <div class="boton-container">
             <button class="boton-personalizado" onclick="playGame()">Jugar</button>
             <button class="boton-personalizado" onclick="Trailer()">Trailer</button>
+            <button class="boton-personalizado" onclick="Discord()">Discord</button>
             <button class="boton-personalizado" onclick="showActivationInstructions()">Activar Minecraft</button>
             <button class="boton-personalizado" onclick="invite()">Invitar</button>
             <button class="boton-personalizado" onclick="exitApp()">Salir</button>
         </div>
     </div>
 
-    <img class="img-bottom-left" id="dynamicImage" src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Realms_Media-Block-Image-0_Bedrock_4x3.png" alt="Imagen Minecraft">
+    <img class="img-bottom-left" src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Realms_Media-Block-Image-0_Bedrock_4x3.png" alt="Imagen Minecraft">
 
     <script>
         function updateTime() {
@@ -215,19 +216,6 @@
             document.getElementById('gmt').textContent = gmtString;
         }
 
-        // Función para alternar imágenes
-        let currentImageIndex = 0;
-        const images = [
-            'https://www.minecraft.net/content/dam/games/minecraft/key-art/Realms_Media-Block-Image-0_Bedrock_4x3.png',
-            'https://www.minecraft.net/content/dam/games/minecraft/screenshots/RTX/RTXon.png',
-            'https://www.minecraft.net/content/dam/games/minecraft/screenshots/RTX/RTXoff.png'
-        ];
-
-        function changeImage() {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            document.getElementById('dynamicImage').src = images[currentImageIndex];
-        }
-
         function showActivationInstructions() {
             alert('Sigue las instrucciones en pantalla para activar Minecraft.');
         }
@@ -238,6 +226,10 @@
 
         function playGame() {
             window.location.href = 'https://chamidev.github.io/Realm/contador';
+        }
+        
+        function Discord() {
+            window.location.href = 'https://discord.gg/ScKxK2cFKS';
         }
 
         function Trailer() {

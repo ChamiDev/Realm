@@ -180,6 +180,7 @@
         <div class="boton-container">
             <button class="boton-personalizado" onclick="playGame()">Jugar</button>
             <button class="boton-personalizado" onclick="Trailer()">Trailer</button>
+            <button class="boton-personalizado" onclick="Discord()">Discord</button>
             <button class="boton-personalizado" onclick="showActivationInstructions()">Activar Minecraft</button>
             <button class="boton-personalizado" onclick="invite()">Invitar</button>
             <button class="boton-personalizado" onclick="exitApp()">Salir</button>
@@ -218,9 +219,7 @@
         // Función para alternar imágenes
         let currentImageIndex = 0;
         const images = [
-            'https://www.minecraft.net/content/dam/games/minecraft/key-art/Realms_Media-Block-Image-0_Bedrock_4x3.png',
-            'https://www.minecraft.net/content/dam/games/minecraft/screenshots/RTX/RTXon.png',
-            'https://www.minecraft.net/content/dam/games/minecraft/screenshots/RTX/RTXoff.png'
+            'https://www.minecraft.net/content/dam/games/minecraft/key-art/Realms_Media-Block-Image-0_Bedrock_4x3.png'
         ];
 
         function changeImage() {
@@ -236,7 +235,11 @@
             // Redirigir al enlace del juego
             window.location.href = 'https://chamidev.github.io/Realm/contador';
         }
-
+        
+        function Discord() {
+            window.location.href = 'https://discord.gg/ScKxK2cFKS';
+        }
+        
         function invite() {
             window.location.href = 'http://action_share';
         }

@@ -87,7 +87,7 @@
             top: 20px;
             left: 20px;
             font-size: 18px;
-            color: #F4F4F4;
+            color: black;
         }
 
         .location {
@@ -95,7 +95,7 @@
             top: 50px;
             left: 20px;
             font-size: 16px;
-            color: #F4F4F4;
+            color: black;
         }
 
         .hidden {
@@ -172,6 +172,14 @@
             bottom: 10px;
             right: 10px;
         }
+
+        .discord {
+            position: absolute;
+            z-index: 2;
+            color: black;
+            top: 10px;
+            right: 10px;
+        }
     </style>
 </head>
 
@@ -187,12 +195,16 @@
         <img class="logo-minecraft" src="https://um2409.renderforest.com/u25148551/visuals/1c6f94cd-c77c-46ce-9328-a72936f01044.png" alt="Logo Minecraft">
         <div class="boton-container">
             <button class="boton-personalizado" onclick="playGame()">Jugar</button>
-            <button class="boton-personalizado" onclick="Discord()">Discord</button>
             <button class="boton-personalizado" onclick="invite()">Invitar</button>
             <button class="boton-personalizado" onclick="exitApp()">Salir</button>
         </div>
     </div>
-
+<button class="discord" onclick="Discord()"><script src="https://cdn.lordicon.com/lordicon.js"></script>
+<lord-icon
+    src="https://cdn.lordicon.com/txwpdwdi.json"
+    trigger="hover"
+    style="width:150px;height:150px">
+</lord-icon></button>
     <img class="img-bottom-left" id="dynamicImage" src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Realms_Media-Block-Image-0_Bedrock_4x3.png" alt="Imagen Minecraft">
 
     <script>

@@ -1,278 +1,246 @@
-<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=none">
+    <meta name="viewport" content="width=device-width, user-scalable=none">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="Chami">
-    <meta name="description" content="Cliente Oficial de MCBE Chai">
-    <link rel="icon" href="https://um2409.renderforest.com/u25148551/visuals/cdc04bf4-da0c-4722-9eba-61651e8ce3ac.png" type="image/png">
-    <title>Chai Realm</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&display=swap">
+    <meta name="description" content="Descarga MCBE Oficial">
+    <link rel="icon" href="https://www.minecraft.net/etc.clientlibs/minecraftnet/clientlibs/clientlib-site/resources/favicon.ico" type="image/png">
+    <title>Descargar</title>
     <style>
-        @font-face {
-            font-family: 'MinecraftFont';
-            src: url('https://chamidev.github.io/Realm/minecraft_font.ttf') format('truetype');
-        }
-
         body {
             margin: 0;
-            padding: 0;
-            height: 100vh;
-            background-image: url('https://chamidev.github.io/Realm/wallpaper.gif');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #04253a, #0b3a56);
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: url('https://um2409.renderforest.com/u25148551/visuals/1249edad-d0e4-471d-b496-7ae0ab64bdf0.png'), auto;
-            flex-direction: column;
+            height: 100vh;
             user-select: none;
-            overflow: hidden;
-            font-family: 'MinecraftFont', sans-serif;
         }
 
-        .loader {
-            width: 80px;
-            height: 80px;
-            color: purple;
+        .container {
+            width: 250px;
+            height: 250px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .game-header img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .game-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .details {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .button {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            color: #fff;
+            border: none;
+            padding: 1px 1px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
             position: relative;
-            background: conic-gradient(from 134deg at top, currentColor 92deg, #0000 0) top, conic-gradient(from -46deg at bottom, currentColor 92deg, #0000 0) bottom;
-            background-size: 100% 50%;
-            background-repeat: no-repeat;
+            top: -40px;
         }
 
-        .loader:before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: conic-gradient(from -135deg at top 0 left 44px, #0000, currentColor 1deg 90deg, #0000 0), conic-gradient(from -45deg at right 0 top 44px, #0000, currentColor 1deg 90deg, #0000 0), conic-gradient(from 45deg at bottom 0 right 44px, #0000, currentColor 1deg 90deg, #0000 0), conic-gradient(from 135deg at left 0 bottom 40px, #0000, currentColor 1deg 90deg, #0000 0);
-            animation: sh7 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+        .button:hover {
+            background-color: rgba(255, 0, 255, 0.1);
+            transform: scale(1.2);
         }
 
-        @keyframes sh7 {
-            33% {
-                inset: -20px;
-                transform: rotate(0deg);
-            }
-            66% {
-                inset: -20px;
-                transform: rotate(90deg);
-            }
-            100% {
-                inset: 0;
-                transform: rotate(90deg);
-            }
+        hr {
+            border: none;
+            border-top: 1px solid #444;
+            margin: 20px 0;
+            width: 100%;
         }
 
-        .overlay {
+        .cabeza {
+            position: relative;
+            top: -31px;
+        }
+
+        .fondo {
+            background-image: url('https://www.minecraft.net/content/dam/games/minecraft/key-art/MC-Vanilla_Media-Block-Image_PC-Bundle-Keyart_800x450.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(20px);
+            width: 100%;
+            height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            color: #F4F4F4;
-            flex-direction: column;
+            z-index: -1;
         }
 
-        .time {
+        .back {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 18px;
-            color: black;
+            top: 0px;
+            left: -100%;
+            background-color: gray;
+            border-top-right-radius: 100px;
+            border-bottom-right-radius: 100px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            animation: slideIn 1s forwards;
         }
 
-        .location {
-            position: absolute;
-            top: 50px;
-            left: 20px;
-            font-size: 16px;
-            color: black;
+        @keyframes slideIn {
+            from {
+                left: -100%;
+            }
+
+            to {
+                left: 0;
+            }
         }
 
-        .hidden {
+        /* Modal Styles */
+        .modal {
             display: none;
-        }
-
-        .content {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .logo-minecraft {
-            width: 80%;
-            height: auto;
-            max-width: 600px;
-            z-index: 1;
-        }
-
-        .boton-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 5%;
-        }
-
-        .boton-personalizado {
-            width: 350px;
-            height: 60px;
-            border: none;
-            background-image: url('https://um2409.renderforest.com/u25148551/visuals/e2bec167-c548-4612-98b5-1d84c659f9a2.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            cursor: pointer;
-            transition: background-image 0.1s ease;
-            font-size: 20px;
-            color: black;
-            text-align: center;
-            line-height: 60px;
-        }
-
-        .boton-personalizado:hover {
-            background-image: url('https://um2409.renderforest.com/u25148551/visuals/c8804cb7-cd43-4804-a224-c2123db6e49a.png');
-            cursor: url('https://um2409.renderforest.com/u25148551/visuals/1249edad-d0e4-471d-b496-7ae0ab64bdf0.png'), auto;
-        }
-
-        .boton-personalizado:active {
-            background-image: url('https://um2409.renderforest.com/u25148551/visuals/c8804cb7-cd43-4804-a224-c2123db6e49a.png');
-        }
-
-        button {
-            background-color: transparent;
-            border: none;
-        }
-
-        .img-bottom-left {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
-            max-height: 100px;
-            width: auto;
-            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
         }
 
-        .version {
-            position: absolute;
-            z-index: 2;
-            color: black;
-            bottom: 10px;
-            right: 10px;
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
         }
 
-        .discord {
-            position: absolute;
-            z-index: 2;
-            color: black;
-            top: 10px;
-            right: 10px;
+        .modal input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
+
+        .modal button {
+            padding: 10px;
+            background: #4CAF50;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .modal button:hover {
+            background: #45a049;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="overlay" id="loader">
-        <div class="loader"></div>
-    </div>
-
-    <div class="time" id="time"></div>
-    <div class="location" id="gmt"></div>
-    <div class="version">1.2.5</div>
-
-    <div class="content" id="content">
-        <img class="logo-minecraft" src="https://um2409.renderforest.com/u25148551/visuals/1c6f94cd-c77c-46ce-9328-a72936f01044.png" alt="Logo Minecraft">
-        <div class="boton-container">
-            <button class="boton-personalizado" onclick="playGame()">Jugar</button>
-            <button class="boton-personalizado" onclick="invite()">Invitar</button>
-            <button class="boton-personalizado" onclick="exitApp()">Salir</button>
+    <div class="fondo"></div>
+    <a href="https://chamidev.github.io/" class="back">
+        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <lord-icon src="https://cdn.lordicon.com/tfwhvbiq.json" trigger="in" delay="100" state="in-reveal" colors="primary:#e4e4e4,secondary:#121331" style="width:50px;height:50px">
+        </lord-icon>
+    </a>
+    <div class="container">
+        <div class="game-header">
+            <img class="cabeza" src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Play_With_Friends_Realms_672x360.png" alt="Minecraft">
+            <h1>CHAI REALM</h1>
+            <p class="details">REALM PRIVADO<br>Exclusiva para Bedrock</p>
+            <br>
+        </div>
+        <div class="buttons">
+            <button class="button" onclick="handleButtonClick()">
+                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                <lord-icon
+                    src="https://cdn.lordicon.com/drdlomqk.json"
+                    trigger="in"
+                    delay="1500"
+                    state="in-reveal"
+                    colors="primary:#4f1091,secondary:#6c16c7,tertiary:#4f1091"
+                    style="width:40px;height:40px">
+                </lord-icon>
+            </button>
         </div>
     </div>
-    <button class="discord" onclick="Discord()"><script src="https://cdn.lordicon.com/lordicon.js"></script>
-<lord-icon
-    src="https://cdn.lordicon.com/txwpdwdi.json"
-    trigger="hover"
-    style="width:100px;height:100px">
-</lord-icon></button>
-    <img class="img-bottom-left" src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Realms_Media-Block-Image-0_Bedrock_4x3.png" alt="Imagen Minecraft">
+
+    <!-- Modal for Password -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <h2>Ingrese la clave</h2>
+            <input type="password" id="passwordInput" placeholder="Clave" />
+            <button onclick="validatePassword()">Enviar</button>
+        </div>
+    </div>
 
     <script>
-        function updateTime() {
-            const now = new Date();
-            const options = {
-                timeZone: 'America/Argentina/Buenos_Aires',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            };
-            const formatter = new Intl.DateTimeFormat('es-AR', options);
-            const dateTimeString = formatter.format(now);
-            const [time, date] = dateTimeString.split(', ');
-            document.getElementById('time').textContent = `${time} ${date}`;
+        const correctPassword = "OBIMBBCD";
+
+        function handleButtonClick() {
+            // If password is already validated, redirect directly
+            if (localStorage.getItem("passwordAccepted") === "true") {
+                redirectToMinecraft();
+            } else {
+                showModal();
+            }
         }
 
-        // Función para obtener el GMT
-        function displayGMT() {
-            const now = new Date();
-            const timezoneOffset = now.getTimezoneOffset();
-            const gmtOffset = timezoneOffset / -60;
-            const gmtString = gmtOffset >= 0 ? `GMT+${gmtOffset}` : `GMT${gmtOffset}`;
-            document.getElementById('gmt').textContent = gmtString;
+        function showModal() {
+            const passwordModal = document.getElementById("passwordModal");
+            passwordModal.style.display = "flex";
         }
 
-        function showActivationInstructions() {
-            window.location.href = 'https://chamidev.github.io/MCBE/';
+        function validatePassword() {
+            const passwordInput = document.getElementById("passwordInput").value;
+            if (passwordInput === correctPassword) {
+                localStorage.setItem("passwordAccepted", "true");
+                redirectToMinecraft();
+            } else {
+                alert("Clave incorrecta.");
+            }
         }
 
-        function invite() {
-            window.location.href = 'https://chamidev.github.io/Realm/invitar';
+        function redirectToMinecraft() {
+            window.location.href = "minecraft://acceptRealmInvite?inviteID=9pRLXQU6xZ-qqfA";
         }
-
-        function playGame() {
-            window.location.href = 'minecraft://acceptRealmInvite/?inviteID=VA53TYg_n2wm-kE';
-        }
-
-        function Discord() {
-            window.location.href = 'https://discord.gg/ScKxK2cFKS';
-        }
-
-        function Trailer() {
-            window.location.href = 'https://chamidev.github.io/Realm/trailer';
-        }
-
-        function exitApp() {
-            window.close();
-        }
-
-        // Mostrar la pantalla de carga durante unos segundos antes de mostrar el contenido
-        setTimeout(() => {
-            document.getElementById('loader').classList.add('hidden');
-            document.getElementById('content').style.display = 'flex';
-        }, 3500);
-
-        // Actualizar la hora cada segundo
-        setInterval(updateTime, 1000);
-
-        // Mostrar el GMT al cargar la página
-        displayGMT();
-
-        // Alternar imágenes cada 5 segundos
-        setInterval(changeImage, 5000);
     </script>
 </body>
 

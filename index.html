@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -17,11 +18,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             user-select: none;
+            overflow-x: hidden;
+        }
+
+        .grid-container {
+            display: grid;
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
 
         .container {
+            margin-top: 10px;
             width: 250px;
             height: 250px;
             background: rgba(0, 0, 0, 0.5);
@@ -32,6 +44,7 @@
         }
 
         .game-header {
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -39,7 +52,7 @@
         }
 
         .game-header img {
-            width: 100%;
+            height: 20%;
             border-radius: 10px;
         }
 
@@ -63,7 +76,7 @@
         }
 
         .button {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0);
             backdrop-filter: blur(5px);
             color: #fff;
             border: none;
@@ -72,11 +85,12 @@
             cursor: pointer;
             transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
             position: relative;
-            top: -40px;
+            top: -120px;
+            left: 75px;
         }
 
         .button:hover {
-            background-color: rgba(255, 0, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.5);
             transform: scale(1.2);
         }
 
@@ -125,116 +139,70 @@
                 left: 0;
             }
         }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            width: 300px;
-        }
-
-        .modal input {
-            padding: 10px;
-            margin: 10px 0;
-            width: 80%;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .modal button {
-            padding: 10px;
-            background: #4CAF50;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        .modal button:hover {
-            background: #45a049;
-        }
     </style>
 </head>
 
 <body>
     <div class="fondo"></div>
-    <a href="https://chamidev.github.io/MCHUB" class="back">
-        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-        <lord-icon src="https://cdn.lordicon.com/tfwhvbiq.json" trigger="in" delay="100" state="in-reveal" colors="primary:#e4e4e4,secondary:#121331" style="width:50px;height:50px">
-        </lord-icon>
-    </a>
-    <div class="container">
-        <div class="game-header">
-            <img class="cabeza" src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Play_With_Friends_Realms_672x360.png" alt="Minecraft">
-            <h1>CHAI REALM</h1>
-            <p class="details">REALM PRIVADO<br>Exclusiva para Bedrock</p>
-            <br>
-        </div>
-        <div class="buttons">
-            <button class="button" onclick="handleButtonClick()">
-                <script src="https://cdn.lordicon.com/lordicon.js"></script>
-                <lord-icon
-                    src="https://cdn.lordicon.com/drdlomqk.json"
-                    trigger="in"
-                    delay="1500"
-                    state="in-reveal"
-                    colors="primary:#4f1091,secondary:#6c16c7,tertiary:#4f1091"
-                    style="width:40px;height:40px">
-                </lord-icon>
-            </button>
-        </div>
-    </div>
-    <!-- Modal for Password -->
-    <div id="passwordModal" class="modal">
-        <div class="modal-content">
-            <h2>Ingrese la clave</h2>
-            <input type="password" id="passwordInput" placeholder="Clave" />
-            <button onclick="validatePassword()">Enviar</button>
-        </div>
-    </div>
 
+    <div>
+        <div class="container">
+            <div class="game-header">
+                <img src="https://um2025.renderforest.com/u25148551/visuals/51dcbb2a-69f3-4b37-b8f9-d4abbb4290e0.png" alt="Minecraft">
+                <h1>Guijarras</h1>
+                <p class="details">Comunidad recién creada<br>Creada por el dueño de la página</p>
+            </div>
+            <button class="button" onclick="openInNewTab('https://discord.gg/Hc7Qxc7eTv')">
+            <script src="https://cdn.lordicon.com/lordicon.js"></script>
+<lord-icon
+    src="https://cdn.lordicon.com/oscvnrst.json"
+    trigger="in"
+    delay="500"
+    state="in-reveal"
+    colors="primary:#000000,secondary:#5865f2,tertiary:#ffffff"
+    style="width:100px;height:100px">
+</lord-icon></button>
+        </div>
+
+        <div class="container">
+            <div class="game-header">
+                <img src="https://um2025.renderforest.com/u25148551/visuals/960ca807-3ef8-4a07-9b07-1f4df77e6912" alt="Minecraft">
+                <h1>Minecraft ES</h1>
+                <p class="details">Comunidad oficial de Minecraft en Español</p>
+            </div>
+            <button class="button" onclick="openInNewTab('https://discord.com/invite/mc-es')">
+            <script src="https://cdn.lordicon.com/lordicon.js"></script>
+<lord-icon
+    src="https://cdn.lordicon.com/oscvnrst.json"
+    trigger="in"
+    delay="500"
+    state="in-reveal"
+    colors="primary:#000000,secondary:#5865f2,tertiary:#ffffff"
+    style="width:100px;height:100px">
+</lord-icon>
+</button>
+        </div>
+        <div class="container">
+            <div class="game-header">
+                <img src="https://b.thumbs.redditmedia.com/rwN0al9P6nYhGSQO-yIJb-FyF5xg-c2v61zjMom4c4E.png" alt="Minecraft">
+                <h1>Reddit Minecraft</h1>
+                <p class="details">Minecraft community on Reddit</p>
+            </div>
+            <button class="button" onclick="openInNewTab('https://www.reddit.com/r/Minecraft/')">
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<lord-icon
+    src="https://cdn.lordicon.com/sxdpfsrn.json"
+    trigger="in"
+    delay="500"
+    state="in-reveal"
+    style="width:100px;height:100px">
+</lord-icon>
+</button>
+        </div>
+    </div>
     <script>
-        const correctPassword = "OBIMBBCD";
-
-        function handleButtonClick() {
-            if (localStorage.getItem("passwordAccepted") === "true") {
-                redirectToMinecraft();
-            } else {
-                showModal();
-            }
-        }
-
-        function showModal() {
-            const passwordModal = document.getElementById("passwordModal");
-            passwordModal.style.display = "flex";
-        }
-
-        function validatePassword() {
-            const passwordInput = document.getElementById("passwordInput").value;
-            if (passwordInput === correctPassword) {
-                localStorage.setItem("passwordAccepted", "true");
-                redirectToMinecraft();
-            } else {
-                alert("Clave incorrecta.");
-            }
-        }
-
-        function redirectToMinecraft() {
-            window.location.href = "https://discord.gg/Hc7Qxc7eTv";
+        function openInNewTab(url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
         }
     </script>
 </body>
